@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  cloth-pg:
+    image: postgres:14.7-alpine
+    container_name: cloth_pg
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=cloth
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin@admin.com
+    ports:
+      - 4304:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
+
+networks:
+  default:
+    external: true
+    name: master-net
